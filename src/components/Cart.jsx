@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button'
 import { FaTrash } from 'react-icons/fa'
 import { Col, Row } from 'react-bootstrap'
 
-const Cart = ({ cartArray }) => (
+const Cart = ({ cartArray, removeFromCart }) => (
   <Row>
     <Col sm={12}>
       <ul style={{ listStyle: 'none' }}>
@@ -13,6 +13,7 @@ const Cart = ({ cartArray }) => (
               onClick={() => {
                 // probably this will be used for REMOVING elements
                 // from the cart...
+                removeFromCart(i)
               }}
             >
               <FaTrash />
