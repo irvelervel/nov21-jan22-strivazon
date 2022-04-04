@@ -7,6 +7,9 @@ class BookDetail extends Component {
     book: null,
   }
 
+  // so now even BookDetail is receiving addToCart
+  // it's in this.props.addToCart
+
   componentDidUpdate(prevProps) {
     if (prevProps.bookSelected !== this.props.bookSelected) {
       this.setState({
@@ -44,7 +47,13 @@ class BookDetail extends Component {
                   <span className="font-weight-bold">Price:</span>
                   {this.state.book.price}
                 </p>
-                <Button color="primary" onClick={() => {}}>
+                <Button
+                  color="primary"
+                  onClick={() => {
+                    // here I would like to add the current book to the cart
+                    this.props.addToCart(this.state.book)
+                  }}
+                >
                   ADD TO CART
                 </Button>
               </Col>

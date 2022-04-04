@@ -1,31 +1,34 @@
-import { Component } from "react";
-import BookList from "./BookList";
-import BookDetail from "./BookDetail";
-import { Col, Row } from "react-bootstrap";
+import { Component } from 'react'
+import BookList from './BookList'
+import BookDetail from './BookDetail'
+import { Col, Row } from 'react-bootstrap'
 
 class BookStore extends Component {
   state = {
     books: [],
     bookSelected: null,
-  };
+  }
+
+  // BookStore is receiving addToCart into the props object
+  // this.props.addToCart
 
   componentDidMount = async () => {
     try {
       let resp = await fetch(
-        "https://striveschool-api.herokuapp.com/food-books"
-      );
+        'https://striveschool-api.herokuapp.com/food-books'
+      )
       if (resp.ok) {
-        let books = await resp.json();
-        this.setState({ books });
+        let books = await resp.json()
+        this.setState({ books })
       } else {
-        console.log("error");
+        console.log('error')
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
-  changeBook = (book) => this.setState({ bookSelected: book });
+  changeBook = (book) => this.setState({ bookSelected: book })
 
   render() {
     return (
@@ -40,11 +43,13 @@ class BookStore extends Component {
         <Col md={8}>
           <BookDetail
             bookSelected={this.state.bookSelected}
+            addToCart={this.props.addToCart}
+            // prop drilling
           />
         </Col>
       </Row>
-    );
+    )
   }
 }
 
-export default BookStore;
+export default BookStore
